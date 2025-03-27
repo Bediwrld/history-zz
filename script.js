@@ -1,171 +1,196 @@
-const quizData = [
-    {
-        question: "Kur filloi lufta e parë botërore?",
-        a: "28 Qërshor 1914",
-        b: "23  Qërshor 1914",
-        c: "12 Janar 1912",
-        d: "28 Gusht 1913",
-        correct: "a",
-    },
-    {
-        question: "Kur mbaroi lufta e parë botërore?",
-        a: "15 Nëntor 1918",
-        b: "11 Nëntor 1918",
-        c: "23 Janar 1915",
-        d: "23 Qërshor 1919",
-        correct: "b",
-    },
-    {
-        question: "Në sa periudha krzesore ndahet historia?",
-        a: "Parahistoria dhe Historia",
-        b: "Koha e vjetër dhe Koha e re",
-        c: "Paleoliti dhe Neoliti",
-        d: "Koha e re dhe Koha më e re",
-        correct: "a",
-    },
-    {
-        question: "Cilin vit filloi lufta e dztë botërore?",
-        a: "11 Shtator 1945",
-        b: "2 Shator 1945",
-        c: "1 Shator 1945",
-        d: "asnjëra nga më lartë",
-        correct: "c",
-    },
-    {
-        question: "Cili është qytetërimi më i lashtë?",
-        a: " Mongolët",
-        b: "Helenet",
-        c: "Babilonët",
-        d: "Sumerët",
-        correct: "d",
-    },
-    {
-        question: "Cili qytetërim e krijoi shkrimin e parë figurativ?",
-        a: "Helenët",
-        b: "Sumerët",
-        c: "Babilonët",
-        d: "Romakët",
-        correct: "b",
-    },
-    {
-        question: "Cili civilizim i lashtë i krijoi anijet me vela?",
-        a: "Egjiptianët",
-        b: "Helenët",
-        c: "Fenikasit",
-        d: "asnjëra nga më lartë",
-        correct: "c",
-    },
-    {
-        question: "Si quheshin dy vëllezërit e famshëm të legjendës së Romës?",
-        a: "Romuli dhe Remi",
-        b: "Romuli dhe Zeusi",
-        c: "Hermes dhe Poseidon",
-        d: "Ronuli dhe Reni",
-        correct: "a",
-    },
-    {
-        question: "Me cilеn fjali i friksonin nenat femijet ne romen e vjeter?",
-        a: "Hanibali ndodhet prapa portave",
-        b: "Hanibali ndodhet përpara portave",
-        c: "Piroja ndodhet para portave",
-        d: "asnjëra nga më lartë",
-        correct: "b",
-    },
-    {
-        question: "Në sa pjesë u nda perëndoria Romake në vitin 395?",
-        a: "3",
-        b: "nuk u nda",
-        c: "2",
-        d: "4",
-        correct: "c",
-    },
-    {
-        question: "Kush ishte kontributori më i madh i Fashizmit?",
-        a: "Adolf Hitler",
-        b: "Stalin",
-        c: "Yao Ming",
-        d: "Benito Mussolini",
-        correct: "d",
-    },
-    {
-        question: "Cili ishte shkaku kryesor për fillimin e luftës së dytë botërore?",
-        a: "Vrasja e trashigimtarit Austro-hungarez Franc Ferdinand",
-        b: "Shpallja e luftës nga Franca kundër Gjermanisë",
-        c: "Rreziqet e tregtisë globale",
-        d: "asnjëra nga më lartë",
-        correct: "a",
-    },
-    {
-        question: "Kur filloi marrëveshja paqësore e Parisit?",
-        a: "19 janar 1918",
-        b: "18 janar 1917",
-        c: "22 janar 1918",
-        d: "18 janar 1918",
-        correct: "d",
-    },
-    {
-        question: "Qka ishte holokausti?",
-        a: "Vrasje sistematike e hebrenjëve dhe popullsisë tjetër",
-        b: "Rritja e kontributit të hebrenjëve në shoqëri",
-        c: "Zhvillimi i teknologjisë informative",
-        d: "asnjëra nga më lartë",
-        correct: "a",
-    },
-    {
-        question: "Ku u hodh bomba atomike?",
-        a: "Osaka dhe Tokyo",
-        b: "Hiroshima dhe Nagasaki",
-        c: "Kyoto dhe Kawasaki",
-        d: "Hiroshima dhe Niggasaki",
-        correct: "b",
-    },
-];
-    const quiz= document.getElementById('quiz')
-    const answerEls = document.querySelectorAll('.answer')
-    const questionEl = document.getElementById('question')
-    const a_text = document.getElementById('a_text')
-    const b_text = document.getElementById('b_text')
-    const c_text = document.getElementById('c_text')
-    const d_text = document.getElementById('d_text')
-    const submitBtn = document.getElementById('submit')
-    let currentQuiz = 0
-    let score = 0
-    loadQuiz()
-    function loadQuiz() {
-        deselectAnswers()
-        const currentQuizData = quizData[currentQuiz]
-        questionEl.innerText = currentQuizData.question
-        a_text.innerText = currentQuizData.a
-        b_text.innerText = currentQuizData.b
-        c_text.innerText = currentQuizData.c
-        d_text.innerText = currentQuizData.d
-    }
-    function deselectAnswers() {
-        answerEls.forEach(answerEl => answerEl.checked = false)
-    }
-    function getSelected() {
-        let answer
-        answerEls.forEach(answerEl => {
-            if(answerEl.checked) {
-                answer = answerEl.id
-            }
-        })
-        return answer
-    }
-    submitBtn.addEventListener('click', () => {
-        const answer = getSelected()
-        if(answer) {
-           if(answer === quizData[currentQuiz].correct) {
-               score++
-           }
-           currentQuiz++
-           if(currentQuiz < quizData.length) {
-               loadQuiz()
-           } else {
-               quiz.innerHTML = `
-               <h2>You answered ${score}/${quizData.length} questions correctly</h2>
-               <button onclick="location.reload()">Reload</button>
-               `
-           }
+// const phaseOne = document.querySelector('.lebron-james-js');
+// const suggestion = document.querySelectorAll('.suggestion');
+// const phaseTwo = document.querySelector('.micheal-jordan-js');
+
+// const userInput = document.querySelector('.prompt-input');
+// const displayInput = document.querySelector('.user-input-js');
+// const layoutConversation = document.querySelector('.conversation-js'); 
+// const apiResponse = document.querySelector('.api-response-js');
+
+// function onclickShowConversation() {
+//   suggestion.forEach(function (suggestionElement) {
+//     suggestionElement.addEventListener('click', function () {
+      
+//       if (phaseOne) {
+//         phaseOne.style.display = 'none';
+//         phaseTwo.classList.add('micheal-jordan');
+//         phaseTwo.style.display = 'flex';
+//       }
+
+//       if (phaseTwo) {
+//         layoutConversation.classList.add('conversation');
+//         displayInput.classList.add('user-input');
+
+//         // Get the text inside the clicked suggestion
+//         const clickedText = suggestionElement.querySelector('.suggestion-js').textContent;
+
+//         // Set it as the displayed input
+//         displayInput.textContent = clickedText;
+//         displayInput.style.display = 'flex';
+//         apiResponse.classList.add('api-response');
+//       }
+//     });
+//   });
+// };
+// onclickShowConversation();
+
+
+
+// function onEnterShowConversation(event) {
+//   userInput.addEventListener('keydown', function (event) {
+//     if (event.key === 'Enter' && userInput.value.trim() !== "") { // Ensure input isn't empty
+//       if (phaseOne) {
+//         phaseOne.style.display = 'none';
+//         phaseTwo.classList.add('micheal-jordan');
+//         phaseTwo.style.display = 'flex';
+//         userInput.classList.add('user-input-phaseTwo');
+//         userInput.style.display = 'flex'; 
+//       }
+
+//       if (phaseTwo) {
+//         layoutConversation.classList.add('conversation');
+//         displayInput.textContent = userInput.value; // Set text to user input
+//         displayInput.classList.add('user-input');
+//         apiResponse.classList.add('api-response');
+//       }
+
+//       // Clear input after showing text
+//       userInput.value = "";
+//     }
+//   });
+// }
+// onEnterShowConversation();
+
+const API_KEY = 'AIzaSyB8CR8XdP9Rf1JM_pfAOgDvCVeSNbUJ54s'; 
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
+const phaseOne = document.querySelector('.lebron-james-js');
+const suggestion = document.querySelectorAll('.suggestion');
+const phaseTwo = document.querySelector('.micheal-jordan-js');
+
+const userInput = document.querySelector('.prompt-input');
+const userInputSection  = document.querySelector('.prompt-input-section') // Keep input always accessible
+const displayInput = document.querySelector('.user-input-js');
+const layoutConversation = document.querySelector('.conversation-js');
+const apiResponseContainer = document.querySelector('.api-response-js'); // Container for responses
+
+let promptHistory = []; // Store conversation history
+
+// Function to send API request and update response div
+async function fetchAIResponse(userText) {
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: userText }] }]
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
-    })
+
+        const data = await response.json();
+        const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received.";
+
+        // Append AI response to conversation
+        appendMessage("ai", aiText); 
+
+        // Store in history
+        promptHistory.push({ prompt: userText, response: aiText });
+
+    } catch (error) {
+        appendMessage("ai", "Error fetching response. Check API key or network.");
+        console.error("API Error:", error);
+    }
+}
+
+// Function to append messages dynamically
+function appendMessage(sender, text) {
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add(sender === "user" ? "user-message" : "ai-message");
+    messageDiv.textContent = text;
+    layoutConversation.appendChild(messageDiv);
+
+    // Scroll to the latest message
+    layoutConversation.scrollTop = layoutConversation.scrollHeight;
+}
+
+// Function to show phaseTwo and allow continuous conversation
+function showConversation(userText) {
+  if (phaseOne) {
+      phaseOne.style.display = 'none';
+      phaseTwo.classList.add('micheal-jordan');
+      phaseTwo.style.display = 'flex';
+
+      // Move input section inside phaseTwo dynamically
+      if (!phaseTwo.contains(userInputSection)) {
+          phaseTwo.appendChild(userInputSection);
+      }
+
+      userInputSection.style.display = 'flex'; // Make sure it's visible
+  }
+
+  appendMessage("user", userText);
+  fetchAIResponse(userText);
+}
+
+// Event listener for clicking a suggestion
+suggestion.forEach(suggestionElement => {
+    suggestionElement.addEventListener('click', function () {
+        const clickedText = suggestionElement.querySelector('.suggestion-js').textContent;
+        showConversation(clickedText);
+    });
+});
+
+function displayMessage(text, sender) {
+  const messageDiv = document.createElement("div");
+  messageDiv.classList.add("message", sender);
+
+  // Format response (preserve paragraphs and simple formatting)
+  text = text.replace(/\n/g, "<br>");
+  text = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>"); // **bold**
+  text = text.replace(/\*(.*?)\*/g, "<i>$1</i>"); // *italic*
+  text = text.replace(/`([^`]+)`/g, "<code>$1</code>"); // Inline code
+  text = text.replace(/- (.*?)\n/g, "<li>$1</li>"); // Convert lists
+
+  messageDiv.innerHTML = text;
+  conversation.appendChild(messageDiv);
+
+  conversation.scrollTop = conversation.scrollHeight; // Auto-scroll to the latest message
+}
+
+// Event listener for pressing Enter
+userInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' && userInput.value.trim() !== "") {
+        const userText = userInput.value.trim();
+        userInput.value = "";  // Clear input after sending
+        showConversation(userText);
+    }
+});
+
+
+
+// import { GoogleGenerativeAI } from "@google/generative-ai";
+
+// // Replace with your actual API key
+//
+// const genAI = new GoogleGenerativeAI(API_KEY);
+
+// async function getGeminiResponse(prompt) {
+//   try {
+//     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+//     const result = await model.generateContent(prompt);
+//     const response = await result.response.text();
+//     console.log("Gemini Response:", response);
+//   } catch (error) {
+//     console.error("Error fetching response:", error);
+//   }
+// }
+
+// // Example usage
+// const userPrompt = "Explain how AI works in simple terms.";
+// getGeminiResponse(userPrompt);
+
+

@@ -1,40 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz App</title>
-    <link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Gemini AI</title>
 </head>
-
 <body>
-    <div class="quiz-container" id="quiz">
-        <div class="quiz-header">
-          <h2 id="question">Question Text</h2>
-          <ul>
-            <li>
-              <input type="radio" name="answer" id="a" class="answer">
-              <label for="a" id="a_text">Answer</label>
-            </li>
-            <li>
-              <input type="radio" name="answer" id="b" class="answer">
-              <label for="b" id="b_text">Answer</label>
-            </li>
-            <li>
-              <input type="radio" name="answer" id="c" class="answer">
-              <label for="c" id="c_text">Answer</label>
-            </li>
-            <li>
-              <input type="radio" name="answer" id="d" class="answer">
-              <label for="d" id="d_text">Answer</label>
-            </li>
-          </ul>
-        </div>
-        <button id="submit">Submit</button>
-      </div>
-      <script src="script.js">
 
-      </script>
+
+      <nav>
+        <div class="chats-bar side-bar">
+          <img src="images/menu-bar.png" alt="menu bar icon" class="menu-bar-icon">
+      </div>
+        <div class="nav-bar">
+          <div class="left-side">
+            <p>Gemini</p>
+          </div>
+
+          <div class="right-side">
+            <img src="images/profile-picture.jpeg" alt="McLovinn"  class="profile-picture">
+          </div>
+        </div>
+      </nav>
+
+
+      <div class="lebron-james-js">
+        <div class="introduction">
+            <div class="introduction-header">
+                <h1>Hello, Dev.</h1>
+                <h2>How can I help you today?</h2>
+            </div>
+        </div>
+    
+        <div class="prompt-suggestions-section">
+            <div class="suggestion">
+                <p class="suggestion-js">Suggest beautiful places to see on an upcoming road trip</p>
+                <img src="images/destination-icon.png" alt="destination icon" class="suggestion-icon">
+            </div>
+    
+            <div class="suggestion">
+                <p class="suggestion-js">Briefly summarize this concept: urban planning</p>
+                <img src="images/lightbulb-icon.png" alt="lightbulb icon" class="suggestion-icon">
+            </div>
+    
+            <div class="suggestion">
+                <p class="suggestion-js">Brainstorm team bonding activities for our work retreat</p>
+                <img src="images/chat-icon.png" alt="chat icon" class="suggestion-icon">
+            </div>
+    
+            <div class="suggestion">
+                <p class="suggestion-js">Improve the<br> readability of the following code</p>
+                <img src="images/code-block-icon.png" alt="code block icon" class="suggestion-icon">
+            </div>
+        </div>
+    
+        <div class="prompt-input-section">
+            <div class="input-container">
+                <input type="text" placeholder="Enter a prompt here" class="prompt-input">
+                <img src="images/add-photo-icon.png" alt="Image" class="input-icon left-icon">
+                <img src="images/mic-icon.png" alt="Mic" class="input-icon right-icon">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="micheal-jordan-js">
+        <div class="conversation-js">
+            <div class="user-input-container-js">
+                <p class="user-input-js"></p>
+            </div>
+            <div class="api-response-js">
+             
+            </div>
+        </div>
+    </div>
+    
+      
+     
+
+      <script type="module" src="script.js"></script>
+     
 </body>
 </html>
